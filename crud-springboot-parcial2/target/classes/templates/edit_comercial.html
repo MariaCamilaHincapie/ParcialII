@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Comercial</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" th:href="@{/}"> HOME</a>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link"
+            th:href="@{/clients}">CLIENTS</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+            th:href="@{/comercials}">COMERCIALS</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+            th:href="@{/orders}">ORDERS</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+        <h1 class="text-center">Edition of comercial</h1>
+        <div class="card-body">
+          <form th:action="@{/comercials/{id}(id=${comercial.id})}" th:object="${comercial}" method="POST">
+            <div class="form-group">
+              <label>Name : </label>
+              <input type="text" name="name" th:field="*{name}" class="form-control" placeholder="Name : " required>
+          </div>
+
+          <div class="form-group">
+              <label>First Lastname : </label>
+              <input type="text" name="lastname1" th:field="*{lastname1}" class="form-control" placeholder="First Lastname : " required>
+          </div>
+
+          <div class="form-group">
+              <label>Second Lastname : </label>
+              <input type="text" name="lastname2" th:field="*{lastname2}" class="form-control" placeholder="Second Lastname : " required>
+          </div>
+
+          <div class="form-group">
+            <label>Region : </label>
+            <select th:field="*{region}" class="form-control" required>
+                <th:block th:each="region : ${regionList}">
+                    <option th:text="${region.name}" th:value="${region.id}"></option>
+                </th:block>
+            </select>
+          </div>
+
+          <div class="form-group">
+              <label>Comission : </label>
+              <input type="number" name="comission" th:field="*{comission}" class="form-control" placeholder="Comission : " required>
+          </div>
+
+            <div class="box-footer">
+              <button class="btn btn-success">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

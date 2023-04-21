@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Inicio</title>
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+    />
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">HOME</a>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link"
+                    th:href="@{/clients}">CLIENTS</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                    th:href="@{/comercials}">COMERCIALS</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                    th:href="@{/orders}">ORDERS</a>
+                </li>
+              </ul>
+          </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+        <h1>WELCOME</h1>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+            <h2>Clients With Orders</h2>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                <tr>
+                <th>Name/s</th> 
+                <th>Lastname/s</th> 
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Comercial</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="clientWithOrder : ${clientsWithOrders}">
+                        <td th:text="${clientWithOrder[0]}">Name</td>
+                        <td th:text="${clientWithOrder[1]} + ' ' + ${clientWithOrder[2]}">Lastname</td>
+                        <td th:text="${clientWithOrder[3]}">Amount</td>
+                        <td th:text="${clientWithOrder[4]}">Date</td>
+                        <td th:text="${clientWithOrder[5]}">Date</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+            <h2>Clients Withouth Orders</h2>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                <tr>
+                <th>Name/s</th> 
+                <th>Lastname/s</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="clientsWithoutOrder : ${clientsWithoutOrders}">
+                        <td th:text="${clientsWithoutOrder[0]}">Name</td>
+                        <td th:text="${clientsWithoutOrder[1]} + ' ' + ${clientsWithoutOrder[2]}">Lastname</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+</body>
+</html>
